@@ -17,13 +17,13 @@ jobs:
       - attach_workspace:
           at: ./target
       - run: |
-            ./mvnw \
-            -Dtest=$(for file in $(circleci tests glob "src/test/**/**.java" \
-            | circleci tests split --split-by=timings); \
-            do basename $file \
-            | sed -e "s/.java/,/"; \
-            done | tr -d '\r\n') \
-            -e test verify
+          ./mvnw \
+          -Dtest=$(for file in $(circleci tests glob "src/test/**/**.java" \
+          | circleci tests split --split-by=timings); \
+          do basename $file \
+          | sed -e "s/.java/,/"; \
+          done | tr -d '\r\n') \
+          -e test verify
       - store_test_results:
           path: target/surefire-reports
       - store_artifacts:
