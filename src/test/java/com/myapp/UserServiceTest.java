@@ -1,34 +1,55 @@
 package com.myapp;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
-
-import com.myapp.UserService;
-import com.myapp.UserRepository;
-import com.myapp.User;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.Optional;
+import java.util.Arrays;
+import java.util.List;
 
-@ExtendWith(MockitoExtension.class)
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
+
+@SpringBootTest
 public class UserServiceTest {
 
     @Mock
     private UserRepository userRepository;
 
     @InjectMocks
-    private UserService userService;
+    private UserServiceImpl userService;
+
+    public UserServiceTest() {
+        MockitoAnnotations.openMocks(this);
+    }
 
     @Test
     public void whenValidUserId_thenUserShouldBeFound() {
-        User user = new User("john", "john@example.com");
-        when(userRepository.findById(1L)).thenReturn(Optional.of(user));
+        User user = new User("John", "john@example.com");
+        when(userRepository.findById(1L)).thenReturn(java.util.Optional.of(user));
 
-        User found = userService.getUserById(1L);
-        assertThat(found.getName()).isEqualTo("john");
+        User found = userService.findUserById(1L);
+
+        assertNotNull(found);
+        assertEquals("John", found.getName());
+    }
+
+    @Test
+    public void whenGetAllUsers_thenReturnUserList() {
+        User user1 = new User("John", "john@example.com");
+        User user2 = new User("Jane", "jane@example.com");
+
+        List<User> users = Arrays.asList(user1, user2);
+
+        when(userRepository.findAll()).thenReturn(users);
+
+        List<User> foundUsers = userService.getAllUsers();
+
+        assertEquals(2, foundUsers.size());
+        assertEquals("John", foundUsers.get(0).getName());
+        assertEquals("Jane", foundUsers.get(1).getName());
     }
 }
+
