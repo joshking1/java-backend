@@ -3,9 +3,9 @@ package com.myapp;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-import com.myapp.service.UserService;
-import com.myapp.repository.UserRepository;
-import com.myapp.model.User;
+import com.myapp.UserService;
+import com.myapp.UserRepository;
+import com.myapp.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
