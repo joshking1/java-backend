@@ -5,17 +5,20 @@
     <groupId>com.myapp</groupId>
     <artifactId>backend</artifactId>
     <version>1.0-SNAPSHOT</version>
+    
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <properties>
         <java.version>17</java.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
     </properties>
+
     <dependencies>
         <!-- Spring Boot Starter Dependencies -->
         <dependency>
@@ -31,7 +34,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        
+
         <!-- MySQL Connector -->
         <dependency>
             <groupId>mysql</groupId>
@@ -45,7 +48,7 @@
             <artifactId>h2</artifactId>
             <scope>test</scope>
         </dependency>
-        
+
         <!-- Embedded MySQL for Testing -->
         <dependency>
             <groupId>com.wix</groupId>
@@ -54,6 +57,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <!-- Spring Boot Maven Plugin -->
@@ -99,4 +103,3 @@
         </plugins>
     </build>
 </project>
-
