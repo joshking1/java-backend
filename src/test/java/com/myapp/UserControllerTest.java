@@ -7,9 +7,9 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.myapp.controller.UserController;
-import com.myapp.service.UserService;
-import com.myapp.model.User;
+import com.myapp.UserController;
+import com.myapp.UserService;
+import com.myapp.User;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +43,5 @@ public class UserControllerTest {
             .andExpect(jsonPath("$[0].name", is(user.getName())));
     }
 }
+
 
