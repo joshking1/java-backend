@@ -14,6 +14,16 @@ public class User {
     private String name;
     private String email;
 
+    // No-argument constructor
+    public User() {
+    }
+
+    // Constructor with arguments
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
     // Getters and Setters
     public Long getId() {
         return id;
@@ -39,5 +49,6 @@ public class User {
         this.email = email;
     }
 }
+
 
 
