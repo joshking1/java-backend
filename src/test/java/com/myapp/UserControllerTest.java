@@ -43,3 +43,4 @@ public class UserControllerTest {
             .andExpect(jsonPath("$[0].name", is(user.getName())));
     }
 }
+
