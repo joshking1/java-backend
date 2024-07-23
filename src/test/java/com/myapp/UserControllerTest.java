@@ -1,46 +1,47 @@
 package com.myapp;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.BDDMockito.given;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import com.myapp.UserController;
-import com.myapp.UserService;
-import com.myapp.User;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.util.Arrays;
-import java.util.List;
 
-@WebMvcTest(UserController.class)
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@SpringBootTest
 public class UserControllerTest {
 
-    @Autowired
     private MockMvc mockMvc;
 
-    @MockBean
+    @Mock
     private UserService userService;
+
+    @InjectMocks
+    private UserController userController;
+
+    public UserControllerTest() {
+        MockitoAnnotations.openMocks(this);
+        this.mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
+    }
 
     @Test
     public void givenUsers_whenGetUsers_thenReturnJsonArray() throws Exception {
-        User user = new User("john", "john@example.com");
-        List<User> allUsers = Arrays.asList(user);
+        User user1 = new User("John", "john@example.com");
+        User user2 = new User("Jane", "jane@example.com");
 
-        given(userService.getAllUsers()).willReturn(allUsers);
+        when(userService.getAllUsers()).thenReturn(Arrays.asList(user1, user2));
 
         mockMvc.perform(get("/users")
-            .contentType(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$", hasSize(1)))
-            .andExpect(jsonPath("$[0].name", is(user.getName())));
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().json("[{'name':'John', 'email':'john@example.com'}, {'name':'Jane', 'email':'jane@example.com'}]"));
     }
 }
-
