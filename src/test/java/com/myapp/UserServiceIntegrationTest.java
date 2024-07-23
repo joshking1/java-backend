@@ -2,8 +2,8 @@ package com.myapp;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import com.myapp.model.User;
-import com.myapp.service.UserService;
+import com.myapp.User;
+import com.myapp.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
