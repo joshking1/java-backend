@@ -1,28 +1,22 @@
 package com.myapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
-    @PostMapping("/signup")
-    public String signup(@RequestBody User user) {
-        userRepository.save(user);
-        return "Sign up successful";
-    }
-
-    @PostMapping("/login")
-    public String login(@RequestBody User user) {
-        User foundUser = userRepository.findByUsername(user.getUsername());
-        if (foundUser != null && foundUser.getPassword().equals(user.getPassword())) {
-            return "Login successful";
-        } else {
-            return "Login failed";
-        }
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 }
+
