@@ -39,13 +39,6 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- H2 Database for Testing -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
-        </dependency>
-        
         <!-- Embedded MySQL for Testing -->
         <dependency>
             <groupId>com.wix</groupId>
