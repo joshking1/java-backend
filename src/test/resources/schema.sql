@@ -3,3 +3,8 @@ CREATE TABLE IF NOT EXISTS user (
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS hibernate_sequence (
+    next_val BIGINT
+);
+
