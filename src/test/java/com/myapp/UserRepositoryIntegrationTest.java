@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
-import static org.junit.jupiter.api.Assertions.*;
 
-import com.myapp.UserRepository;
-import com.myapp.User;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @SpringJUnitConfig
