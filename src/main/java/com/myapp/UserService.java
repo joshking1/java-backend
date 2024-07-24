@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface UserService {
     List<User> getAllUsers();
-    User findUserById(long id);
+    User getUserById(long id);  // Change method name to match the test
 }
+
 
