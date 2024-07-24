@@ -13,7 +13,16 @@ public class User {
     private Long id;
     private String name;
 
-    // Getters and Setters
+    // No-argument constructor
+    public User() {
+    }
+
+    // Constructor with parameters
+    public User(String name) {
+        this.name = name;
+    }
+
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -30,4 +39,5 @@ public class User {
         this.name = name;
     }
 }
+
 
