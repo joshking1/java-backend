@@ -1,8 +1,11 @@
+package com.myapp;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -15,8 +18,8 @@ public class UserServiceIntegrationTest {
 
     @Test
     public void whenValidUserId_thenUserShouldBeFound() {
-        User user = userService.findUserById(1L);
+        User user = userService.getUserById(1L);
         assertNotNull(user);
-        assertEquals(1L, user.getId());
+        assertEquals("John", user.getName());
     }
 }
