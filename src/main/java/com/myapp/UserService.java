@@ -4,5 +4,6 @@ import java.util.List;
 
 public interface UserService {
     List<User> getAllUsers();
-    User findUserById(long id);
+    User saveUser(User user);
+    User getUserById(Long id);
 }
