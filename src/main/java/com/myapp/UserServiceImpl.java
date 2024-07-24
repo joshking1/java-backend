@@ -16,8 +16,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findUserById(long id) {
+    public User getUserById(long id) {  // Change method name to match the test
         return userRepository.findById(id).orElse(null);
     }
 }
-
